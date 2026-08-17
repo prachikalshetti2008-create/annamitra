@@ -613,6 +613,7 @@ app.post('/api/admin/resolve-grievance', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-    console.log(`🌾 AnnaMitra SmartPDS REST API Server is running at http://localhost:${PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`AnnaMitra SmartPDS REST API Server is running on port ${PORT}`);
 });
