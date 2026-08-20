@@ -36,6 +36,7 @@ class Database {
                 const parsed = JSON.parse(raw);
                 if (parsed.citizens && parsed.citizens.length >= 50) {
                     if (!parsed.modifications) parsed.modifications = [];
+                    if (!parsed.queries) parsed.queries = [];
                     return parsed;
                 }
             }
@@ -48,13 +49,14 @@ class Database {
             if (fs.existsSync(DB_FILE)) {
                 const parsed = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
                 if (!parsed.modifications) parsed.modifications = [];
+                if (!parsed.queries) parsed.queries = [];
                 return parsed;
             }
         } catch (err) {
             console.error('Error seeding initial data:', err);
         }
 
-        return { citizens: [], shops: [], grievances: [], modifications: [], adminStats: {} };
+        return { citizens: [], shops: [], grievances: [], modifications: [], queries: [], adminStats: {} };
     }
 
     save() {
